@@ -12,15 +12,8 @@ const float FCP = 40.f;
 int m_iWidth = 800;		//width of the viewport
 int m_iHeight = 600;	//height of the viewport
 
-float angle;	//only for rotation
-float spin;		//only for rotation
-
-void destroy()
-{
-}
-
 ///
-/// Function designed to FreeGLU to use the glutKeyboardFunc
+/// Function designed to be use in the glutKeyboardFunc
 /// @param key represents the key pressed in the keyboard
 /// 
 void keyboardDown(unsigned char key, int x, int y) 
@@ -30,7 +23,7 @@ void keyboardDown(unsigned char key, int x, int y)
   case 'Q':
   case 'q':
   case  27:   // ESC
-	  destroy();
+	  exit(0);
   }
 }
 
@@ -39,8 +32,8 @@ void idle(void)
 	glutPostRedisplay();
 }
 
-void draw() {
- 
+void draw()
+{
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.6,0.6,0.6,1);
   glMatrixMode(GL_MODELVIEW);
@@ -56,7 +49,6 @@ void draw() {
 		glVertex3f(0,0.5,-1);
 	glEnd();
   //begin - rendering a simple triangle
-	glFlush();
 	glutSwapBuffers();
 }
 
@@ -75,7 +67,6 @@ void reshape(int width, int height)
 
 bool initialize()
 {
-	angle = 0; spin = 3;	//5 degrees
 	glEnable(GL_DEPTH_TEST);
 	return true;
 }
@@ -91,6 +82,7 @@ int main(int argc, char** argv)
 	glutDisplayFunc(draw);
 	glutIdleFunc(idle);
 	glutReshapeFunc(reshape);
+	glutKeyboardFunc(keyboardDown);
 	//GUI construction
 	glutMainLoop();
 	return 0;
