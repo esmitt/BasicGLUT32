@@ -27,11 +27,13 @@ void keyboardDown(unsigned char key, int x, int y)
   }
 }
 
+/// Function invoked on idle time of program
 void idle(void)
 {
 	glutPostRedisplay();
 }
 
+/// All the drawing code here
 void draw()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -52,19 +54,21 @@ void draw()
 	glutSwapBuffers();
 }
 
+/// Is invoked when window is resized, modifying the projection matrix and viewport
 void reshape(int width, int height) 
 {
   glViewport (0, 0, (GLsizei) width, (GLsizei) height);
  
   glMatrixMode (GL_PROJECTION);
   glLoadIdentity();
-	float ratio = (height == 0)?1:(GLfloat) width/(GLfloat) height;
+  float ratio = (height == 0)?1:(GLfloat) width/(GLfloat) height;
   gluPerspective(FOV, ratio, NCP, FCP);
  
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 }
 
+/// Insert all your initialization objects and OpenGL status
 bool initialize()
 {
 	glEnable(GL_DEPTH_TEST);
@@ -76,14 +80,12 @@ int main(int argc, char** argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(m_iWidth, m_iHeight);
-	glutCreateWindow(WINDOW_TITLE);	
-	glutCreateMenu(NULL);
+	glutCreateWindow(WINDOW_TITLE);
 	if(!initialize()) return 1;
 	glutDisplayFunc(draw);
 	glutIdleFunc(idle);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboardDown);
-	//GUI construction
 	glutMainLoop();
 	return 0;
 }
