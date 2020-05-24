@@ -1,6 +1,6 @@
-# Basic GLUT Template using VS 2017
+# Basic GLUT Template using with VS 2019
 
-This is a basic template to use GLUT under Windows using Visual Studio 2017. The code shows a colored triangle (one different color per vertex), using the legacy OpenGL style. Also, it is base to be used on Visual Studio compiler due that contains
+This is a basic template to use GLUT under Windows using Visual Studio 2019. The code shows a colored triangle (one different color per vertex), using the legacy OpenGL style. Also, it is base to be used on Visual Studio compiler due that contains
 
     #pragma comment(lib, "glut32.lib")
 at beginning of code. The .lib and .dll are as part of this repo (32 bits version).
